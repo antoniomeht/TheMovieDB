@@ -1,0 +1,23 @@
+/* 
+  Localizable.strings
+  TheMovieDB
+
+  Created by Antonio Araez Moreno on 9/12/23.
+  
+*/
+
+// MARK:  Generic
+
+"movieList.search" = "Buscar...";
+
+// MARK: Utils
+
+"utils.unknownTime" = "Fecha desconocida";
+
+"utils.unknownDate" = "Duración desconocida";
+
+"utils.unknownGenre" = "Género desconocido";
+
+// MARK:  Movie List
+
+"movieList.title" = "Lista de Películas";
