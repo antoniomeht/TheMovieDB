@@ -47,8 +47,8 @@ class MovieListPresenter: MovieListPresenterLogic {
             let displayMovie = DisplayMovie(id: movie.id,
                                             title: movie.title,
                                             overview: movie.overview,
-                                            posterPath: movie.posterPath,
-                                            backdropPath: movie.backdropPath,
+                                            posterPath: movie.posterURL,
+                                            backdropPath: movie.backdropURL,
                                             voteAverage: movie.voteAverage)
             displayMovies.append(displayMovie)
         }

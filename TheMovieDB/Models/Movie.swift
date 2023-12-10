@@ -44,6 +44,16 @@ struct Movie: Codable {
         case production = "production_companies"
     }
     
+    var backdropURL: URL {
+        let url = URL(string: "https://image.tmdb.org/t/p/w500\(backdropPath ?? "")")!
+        return url
+    }
+    
+    var posterURL: URL {
+        let url = URL(string: "https://image.tmdb.org/t/p/w500\(posterPath ?? "")")!
+        return url
+    }
+    
     var mainGenre: String{
         return genres?.first?.name ?? StringConstants.Utils.unknownGenre
     }

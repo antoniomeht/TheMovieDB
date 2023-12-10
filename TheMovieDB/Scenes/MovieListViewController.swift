@@ -61,7 +61,7 @@ class MovieListViewController: BaseViewController, MovieListDisplayLogic {
 
 extension MovieListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return Utils.screenSize.width / 2
+        return Utils.screenSize.width / 1.5
     }
 }
 

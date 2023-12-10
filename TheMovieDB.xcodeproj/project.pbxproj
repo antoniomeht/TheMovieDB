@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A95E4E712B25C5C100E15985 /* Extension+UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95E4E702B25C5C100E15985 /* Extension+UIImageView.swift */; };
 		A9FFB5862B24578B0043D0F0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9FFB5852B24578B0043D0F0 /* AppDelegate.swift */; };
 		A9FFB5882B24578B0043D0F0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9FFB5872B24578B0043D0F0 /* SceneDelegate.swift */; };
 		A9FFB5902B24578B0043D0F0 /* TheMovieDB.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A9FFB58E2B24578B0043D0F0 /* TheMovieDB.xcdatamodeld */; };
@@ -56,6 +57,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A95E4E702B25C5C100E15985 /* Extension+UIImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extension+UIImageView.swift"; sourceTree = "<group>"; };
 		A9FFB5822B24578B0043D0F0 /* TheMovieDB.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TheMovieDB.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9FFB5852B24578B0043D0F0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A9FFB5872B24578B0043D0F0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -228,6 +230,7 @@
 				A9FFB5F42B249BFA0043D0F0 /* Extension+Dictionary.swift */,
 				A9FFB5F62B249BFA0043D0F0 /* Extension+String.swift */,
 				A9FFB5F52B249BFA0043D0F0 /* Extension+UIView.swift */,
+				A95E4E702B25C5C100E15985 /* Extension+UIImageView.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -397,6 +400,7 @@
 				A9FFB5F82B249BFA0043D0F0 /* Extension+UIView.swift in Sources */,
 				A9FFB6052B249C330043D0F0 /* APIMethod.swift in Sources */,
 				A9FFB5EA2B24862F0043D0F0 /* MovieListCell.swift in Sources */,
+				A95E4E712B25C5C100E15985 /* Extension+UIImageView.swift in Sources */,
 				A9FFB5FF2B249C210043D0F0 /* BaseViewController.swift in Sources */,
 				A9FFB5DE2B2473C40043D0F0 /* MovieList.swift in Sources */,
 				A9FFB5E62B2480A40043D0F0 /* DisplayMovie.swift in Sources */,
