@@ -11,6 +11,13 @@ enum StringConstants {
     
     struct MovieList {
         static let title = "movieList.title".localize()
+        
+        struct ListType {
+            static let nowPlaying = "movieList.movieListType.nowPlaying".localize()
+            static let popular = "movieList.movieListType.popular".localize()
+            static let topRated = "movieList.movieListType.topRated".localize()
+            static let upcoming = "movieList.movieListType.upcoming".localize()
+        }
     }
     
     struct Utils {

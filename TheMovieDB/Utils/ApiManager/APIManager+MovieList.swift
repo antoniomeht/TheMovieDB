@@ -8,7 +8,7 @@
 import Foundation
 
 extension APIManager {
-    func getMovies(listType: MovieListType, parameters: [String: Any]?, completion: @escaping (Result<MovieList, Error>) -> Void) {
-        request(endpoint: listType.getPath(), method: .GET, parameters: parameters, completion: completion)
+    func getMovies(listType: MovieListType, page: Int, completion: @escaping (Result<MovieList, Error>) -> Void) {
+        request(endpoint: listType.getPath() + "?page=\(page)", method: .GET, parameters: nil, completion: completion)
     }
 }
