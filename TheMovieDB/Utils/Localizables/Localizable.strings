@@ -21,3 +21,11 @@
 // MARK:  Movie List
 
 "movieList.title" = "Lista de Películas";
+
+"movieList.movieListType.nowPlaying" = "Más recientes";
+
+"movieList.movieListType.popular" = "Populares";
+
+"movieList.movieListType.topRated" = "Más valoradas";
+
+"movieList.movieListType.upcoming" = "Próximas";

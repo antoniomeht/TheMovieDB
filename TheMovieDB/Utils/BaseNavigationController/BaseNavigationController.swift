@@ -11,19 +11,20 @@ class BaseNavigationController: UINavigationController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        setupStyle()
     }
     
+    private func setupStyle() {
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        appearance.backgroundColor = .darkGray
+        
+        let titleAttribute = [NSAttributedString.Key.font:  UIFont(name: "Avenir Next Bold", size: 20), NSAttributedString.Key.foregroundColor: UIColor.white]
+        appearance.titleTextAttributes = titleAttribute as [NSAttributedString.Key : Any]
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        navigationBar.standardAppearance = appearance
+        navigationBar.scrollEdgeAppearance = appearance
     }
-    */
+
 
 }

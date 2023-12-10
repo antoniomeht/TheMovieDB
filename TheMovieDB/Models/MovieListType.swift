@@ -25,4 +25,17 @@ enum MovieListType {
             return Constants.Endpoint.Movie.upcomming
         }
     }
+    
+    static func getType(_ string: String) -> Self{
+        switch string {
+        case StringConstants.MovieList.ListType.popular:
+            return .popular
+        case StringConstants.MovieList.ListType.topRated:
+            return .topRated
+        case StringConstants.MovieList.ListType.upcoming:
+            return .upcomming
+        default:
+            return .nowPlaying
+        }
+    }
 }

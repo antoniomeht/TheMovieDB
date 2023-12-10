@@ -8,12 +8,13 @@
 import UIKit
 
 protocol MovieListDisplayLogic: AnyObject {
-    func displayMovies(_ displayMovies: [DisplayMovie])
+    func displayMovies(_ displayMovies: [DisplayMovie], append: Bool)
 }
 
 class MovieListViewController: BaseViewController, MovieListDisplayLogic {
 
     @IBOutlet weak var movieTableView: UITableView!
+    @IBOutlet weak var movieTypeButton: UIButton!
     
     var presenter: MovieListPresenterLogic?
     var displayMovies: [DisplayMovie]? {
@@ -27,7 +28,8 @@ class MovieListViewController: BaseViewController, MovieListDisplayLogic {
         setupNavigation()
         setupView()
         setupTableView()
-        presenter?.getMovieList()
+        setupMenuButton()
+        presenter?.getNewMovieList()
     }
     
     private func setupNavigation(){
@@ -45,16 +47,37 @@ class MovieListViewController: BaseViewController, MovieListDisplayLogic {
         movieTableView.register(UINib(nibName: MovieListCell.cellIdentificator, bundle: nil), forCellReuseIdentifier: MovieListCell.cellIdentificator)
     }
     
+    private func setupMenuButton() {
+        let menuClosure = {(action: UIAction) in
+            self.updateListButton(action.title)
+        }
+        movieTypeButton.menu = UIMenu(children: [
+            UIAction(title: StringConstants.MovieList.ListType.nowPlaying, state: .on, handler: menuClosure),
+            UIAction(title: StringConstants.MovieList.ListType.popular, handler: menuClosure),
+            UIAction(title: StringConstants.MovieList.ListType.topRated, handler: menuClosure),
+            UIAction(title: StringConstants.MovieList.ListType.upcoming, handler: menuClosure)
+        ])
+        movieTypeButton.showsMenuAsPrimaryAction = true
+        movieTypeButton.changesSelectionAsPrimaryAction = true
+    }
+    
     private func reloadTableCells(){
         DispatchQueue.main.async { [weak self] in
             self?.movieTableView.reloadData()
         }
     }
     
-    func displayMovies(_ displayMovies: [DisplayMovie]) {
-        self.displayMovies = displayMovies
+    func displayMovies(_ displayMovies: [DisplayMovie], append: Bool) {
+        if append {
+            self.displayMovies?.append(contentsOf: displayMovies)
+        } else {
+            self.displayMovies = displayMovies
+        }
     }
-
+    
+    func updateListButton(_ selection: String) {
+        presenter?.setMovieListType(MovieListType.getType(selection))
+    }
 }
 
 // MARK: - TableView Delegate & DataService
@@ -74,6 +97,12 @@ extension MovieListViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: MovieListCell.cellIdentificator, for: indexPath) as? MovieListCell
         cell?.configureCell(displayMovies?[indexPath.row])
         return cell ?? UITableViewCell()
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if indexPath.item == (displayMovies?.count ?? 0) - 1{
+            presenter?.loadPage()
+        }
     }
 
 }
