@@ -58,7 +58,6 @@ class MovieListPresenter: MovieListPresenterLogic {
                                             title: movie.title,
                                             overview: movie.overview,
                                             posterPath: movie.posterURL,
-                                            backdropPath: movie.backdropURL,
                                             voteAverage: movie.voteAverage)
             displayMovies.append(displayMovie)
         }

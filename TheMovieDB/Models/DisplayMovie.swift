@@ -12,6 +12,5 @@ struct DisplayMovie {
     let title: String?
     let overview: String?
     let posterPath: URL?
-    let backdropPath: URL?
     let voteAverage: Double?
 }

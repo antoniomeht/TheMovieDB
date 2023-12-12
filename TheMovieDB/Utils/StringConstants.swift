@@ -20,6 +20,10 @@ enum StringConstants {
         }
     }
     
+    struct MovieDetail {
+        static let title = "movieDetail.title".localize()
+    }
+    
     struct Utils {
         static let unknownTime = "utils.unknownTime".localize()
         static let unknownDate = "utils.unknownDate".localize()
