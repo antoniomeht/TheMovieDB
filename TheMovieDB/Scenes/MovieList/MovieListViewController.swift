@@ -16,7 +16,9 @@ class MovieListViewController: BaseViewController, MovieListDisplayLogic {
     @IBOutlet weak var movieTableView: UITableView!
     @IBOutlet weak var movieTypeButton: UIButton!
     
+    var searchController: UISearchController?
     var presenter: MovieListPresenterLogic?
+    var endListFlag = false
     var displayMovies: [DisplayMovie]? {
         didSet {
             reloadTableCells()
@@ -25,19 +27,17 @@ class MovieListViewController: BaseViewController, MovieListDisplayLogic {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupNavigation()
         setupView()
         setupTableView()
+        setupSearchController()
         setupMenuButton()
         presenter?.getNewMovieList()
     }
     
-    private func setupNavigation(){
-        title = StringConstants.MovieList.title
-    }
-    
     private func setupView(){
+        title = StringConstants.MovieList.title
         presenter = MovieListPresenter(viewController: self)
+        movieTypeButton.layer.cornerRadius = 10
     }
     
     private func setupTableView() {
@@ -47,8 +47,17 @@ class MovieListViewController: BaseViewController, MovieListDisplayLogic {
         movieTableView.register(UINib(nibName: MovieListCell.cellIdentificator, bundle: nil), forCellReuseIdentifier: MovieListCell.cellIdentificator)
     }
     
+    private func setupSearchController() {
+        searchController = UISearchController(searchResultsController: SearchMovieViewController())
+        searchController?.searchResultsUpdater = self
+        navigationItem.searchController = searchController
+        
+        searchController?.searchBar.searchTextField.backgroundColor = .white
+    }
+    
     private func setupMenuButton() {
         let menuClosure = {(action: UIAction) in
+            self.endListFlag = false
             self.updateListButton(action.title)
         }
         movieTypeButton.menu = UIMenu(children: [
@@ -63,7 +72,11 @@ class MovieListViewController: BaseViewController, MovieListDisplayLogic {
     
     private func reloadTableCells(){
         DispatchQueue.main.async { [weak self] in
-            self?.movieTableView.reloadData()
+            UIView.performWithoutAnimation {
+                self?.movieTableView.reloadData()
+                self?.movieTableView.beginUpdates()
+                self?.movieTableView.endUpdates()
+            }
         }
     }
     
@@ -73,11 +86,18 @@ class MovieListViewController: BaseViewController, MovieListDisplayLogic {
         } else {
             self.displayMovies = displayMovies
         }
+        endListFlag = displayMovies.isEmpty
     }
     
     func updateListButton(_ selection: String) {
         presenter?.setMovieListType(MovieListType.getType(selection))
     }
+    
+    private func presentMovieDetail(movieId: Int){
+        let controller = MovieDetailViewController(movieId: movieId)
+        navigationController?.pushViewController(controller, animated: true)
+    }
+    
 }
 
 // MARK: - TableView Delegate & DataService
@@ -100,9 +120,26 @@ extension MovieListViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if indexPath.item == (displayMovies?.count ?? 0) - 1{
+        if indexPath.item == (displayMovies?.count ?? 0) - 1, !endListFlag{
             presenter?.loadPage()
         }
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let movieId = displayMovies?[indexPath.row].id {
+            presentMovieDetail(movieId: movieId)
+        }
+    }
 
+}
+
+// MARK: - Search Controller Delegates
+
+extension MovieListViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        guard let text = searchController.searchBar.text, let controller = searchController.searchResultsController as? SearchMovieDisplayLogic else {
+            return
+        }
+        controller.searchTextDidChanged(text: text)
+    }
 }

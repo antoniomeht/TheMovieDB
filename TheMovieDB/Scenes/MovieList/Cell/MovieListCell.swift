@@ -15,6 +15,7 @@ class MovieListCell: UITableViewCell {
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var posterImage: UIImageView!
     @IBOutlet weak var infoContainerView: UIView!
+    @IBOutlet weak var ratingView: RatingView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -31,6 +32,8 @@ class MovieListCell: UITableViewCell {
     private func setupStyle(){
         infoContainerView.layer.cornerRadius = 5
         infoContainerView.backgroundColor = UIColor.lightGray.withAlphaComponent(0.2)
+        
+        ratingView.layer.cornerRadius = ratingView.bounds.width / 2
     }
     
     func configureCell(_ movie: DisplayMovie?) {
@@ -38,6 +41,7 @@ class MovieListCell: UITableViewCell {
         titleLabel.text = movie?.title
         descriptionLabel.text = movie?.overview
         posterImage.setImageFromURL(movie?.posterPath)
+        ratingView.setRating(movie?.voteAverage ?? 0)
     }
   
 }
