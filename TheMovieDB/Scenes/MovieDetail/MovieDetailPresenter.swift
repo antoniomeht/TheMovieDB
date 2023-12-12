@@ -43,7 +43,7 @@ class MovieDetailPresenter: MovieDetailPresenterLogic {
             return
         }
         
-        var displayMovieDetail = DisplayMovieDetail(id: details.id,
+        let displayMovieDetail = DisplayMovieDetail(id: details.id,
                                                     title: details.title,
                                                     overview: details.overview,
                                                     backdropPath: details.backdropURL,

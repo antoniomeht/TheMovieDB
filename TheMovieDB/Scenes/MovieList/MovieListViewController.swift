@@ -16,6 +16,7 @@ class MovieListViewController: BaseViewController, MovieListDisplayLogic {
     @IBOutlet weak var movieTableView: UITableView!
     @IBOutlet weak var movieTypeButton: UIButton!
     
+    var searchController: UISearchController?
     var presenter: MovieListPresenterLogic?
     var displayMovies: [DisplayMovie]? {
         didSet {
@@ -23,10 +24,12 @@ class MovieListViewController: BaseViewController, MovieListDisplayLogic {
         }
     }
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
         setupTableView()
+        setupSearchController()
         setupMenuButton()
         presenter?.getNewMovieList()
     }
@@ -41,6 +44,12 @@ class MovieListViewController: BaseViewController, MovieListDisplayLogic {
         movieTableView.dataSource = self
         
         movieTableView.register(UINib(nibName: MovieListCell.cellIdentificator, bundle: nil), forCellReuseIdentifier: MovieListCell.cellIdentificator)
+    }
+    
+    private func setupSearchController() {
+        searchController = UISearchController(searchResultsController: SearchMovieViewController())
+        searchController?.searchResultsUpdater = self
+        navigationItem.searchController = searchController
     }
     
     private func setupMenuButton() {
@@ -79,6 +88,7 @@ class MovieListViewController: BaseViewController, MovieListDisplayLogic {
         let controller = MovieDetailViewController(movieId: movieId)
         navigationController?.pushViewController(controller, animated: true)
     }
+    
 }
 
 // MARK: - TableView Delegate & DataService
@@ -112,4 +122,15 @@ extension MovieListViewController: UITableViewDataSource {
         }
     }
 
+}
+
+// MARK: - Search Controller Delegates
+
+extension MovieListViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        guard let text = searchController.searchBar.text, let controller = searchController.searchResultsController as? SearchMovieDisplayLogic else {
+            return
+        }
+        controller.searchTextDidChanged(text: text)
+    }
 }
