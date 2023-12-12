@@ -16,5 +16,6 @@ class BaseViewController: UIViewController {
 
     private func setupNavigation(){
         navigationItem.backBarButtonItem = UIBarButtonItem(title: .empty, style: .plain, target: nil, action: nil)
+        navigationItem.hidesSearchBarWhenScrolling = false
     }
 }
