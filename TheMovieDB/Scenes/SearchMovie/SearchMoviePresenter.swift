@@ -37,7 +37,6 @@ class SearchMoviePresenter: SearchMoviePresenterLogic {
     }
     
     private func searchText(query: String, completion: @escaping ((MovieList) -> Void)) {
-        currentPage += 1
         APIManager.shared.searchMovie(with: query, page: currentPage) { result in
             switch result {
             case .success(let movies):
@@ -66,6 +65,7 @@ class SearchMoviePresenter: SearchMoviePresenterLogic {
     }
     
     func loadPage() {
+        currentPage += 1
         searchText(query: queryText) { [weak self] movies in
             self?.moviesResult = movies
             self?.presentDisplayMovies(append: true)
