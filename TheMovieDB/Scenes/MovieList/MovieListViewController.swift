@@ -78,6 +78,13 @@ class MovieListViewController: BaseViewController, MovieListDisplayLogic {
     func updateListButton(_ selection: String) {
         presenter?.setMovieListType(MovieListType.getType(selection))
     }
+    
+    private func presentMovieDetail(movieId: Int){
+        let controller = MovieDetailViewController(movieId: movieId)
+        controller.modalTransitionStyle = .crossDissolve
+        controller.modalPresentationStyle = .fullScreen
+        present(controller, animated: true)
+    }
 }
 
 // MARK: - TableView Delegate & DataService
@@ -102,6 +109,12 @@ extension MovieListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if indexPath.item == (displayMovies?.count ?? 0) - 1{
             presenter?.loadPage()
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let movieId = displayMovies?[indexPath.row].id {
+            presentMovieDetail(movieId: movieId)
         }
     }
 
