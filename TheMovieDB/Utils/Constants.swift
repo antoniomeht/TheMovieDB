@@ -20,7 +20,11 @@ struct Constants {
             static let topRated = "/movie/top_rated"
             static let upcomming = "/movie/upcoming"
             static let search = "/search/movie"
+            
+            /// /movie/{movieId}
+            static let detail = "/movie/"
         }
+        
     }
     
 }

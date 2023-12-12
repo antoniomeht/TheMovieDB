@@ -15,6 +15,8 @@ class BaseNavigationController: UINavigationController {
     }
     
     private func setupStyle() {
+        navigationBar.tintColor = .white
+
         let appearance = UINavigationBarAppearance()
         appearance.configureWithOpaqueBackground()
         appearance.backgroundColor = .darkGray

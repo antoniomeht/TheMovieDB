@@ -25,18 +25,14 @@ class MovieListViewController: BaseViewController, MovieListDisplayLogic {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupNavigation()
         setupView()
         setupTableView()
         setupMenuButton()
         presenter?.getNewMovieList()
     }
     
-    private func setupNavigation(){
-        title = StringConstants.MovieList.title
-    }
-    
     private func setupView(){
+        title = StringConstants.MovieList.title
         presenter = MovieListPresenter(viewController: self)
     }
     
@@ -81,9 +77,7 @@ class MovieListViewController: BaseViewController, MovieListDisplayLogic {
     
     private func presentMovieDetail(movieId: Int){
         let controller = MovieDetailViewController(movieId: movieId)
-        controller.modalTransitionStyle = .crossDissolve
-        controller.modalPresentationStyle = .fullScreen
-        present(controller, animated: true)
+        navigationController?.pushViewController(controller, animated: true)
     }
 }
 

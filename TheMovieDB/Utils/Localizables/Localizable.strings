@@ -29,3 +29,7 @@
 "movieList.movieListType.topRated" = "Más valoradas";
 
 "movieList.movieListType.upcoming" = "Próximas";
+
+// MARK:  Movie Detail
+
+"movieDetail.title" = "Detalle de Películas";
