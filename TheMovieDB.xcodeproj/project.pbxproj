@@ -17,6 +17,8 @@
 		A9DEBB9E2B285E2A00A51E1C /* SearchMovieViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9DEBB9C2B285E2A00A51E1C /* SearchMovieViewController.xib */; };
 		A9DEBBA12B2869F200A51E1C /* SearchMoviePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9DEBBA02B2869F200A51E1C /* SearchMoviePresenter.swift */; };
 		A9DEBBA32B286B7F00A51E1C /* APIManager+SearchMovie.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9DEBBA22B286B7F00A51E1C /* APIManager+SearchMovie.swift */; };
+		A9DEBBA62B287A5900A51E1C /* RatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9DEBBA52B287A5900A51E1C /* RatingView.swift */; };
+		A9DEBBA82B287A6300A51E1C /* RatingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9DEBBA72B287A6300A51E1C /* RatingView.xib */; };
 		A9FFB5862B24578B0043D0F0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9FFB5852B24578B0043D0F0 /* AppDelegate.swift */; };
 		A9FFB5882B24578B0043D0F0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9FFB5872B24578B0043D0F0 /* SceneDelegate.swift */; };
 		A9FFB5902B24578B0043D0F0 /* TheMovieDB.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A9FFB58E2B24578B0043D0F0 /* TheMovieDB.xcdatamodeld */; };
@@ -76,6 +78,8 @@
 		A9DEBB9C2B285E2A00A51E1C /* SearchMovieViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchMovieViewController.xib; sourceTree = "<group>"; };
 		A9DEBBA02B2869F200A51E1C /* SearchMoviePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMoviePresenter.swift; sourceTree = "<group>"; };
 		A9DEBBA22B286B7F00A51E1C /* APIManager+SearchMovie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APIManager+SearchMovie.swift"; sourceTree = "<group>"; };
+		A9DEBBA52B287A5900A51E1C /* RatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingView.swift; sourceTree = "<group>"; };
+		A9DEBBA72B287A6300A51E1C /* RatingView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RatingView.xib; sourceTree = "<group>"; };
 		A9FFB5822B24578B0043D0F0 /* TheMovieDB.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TheMovieDB.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9FFB5852B24578B0043D0F0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A9FFB5872B24578B0043D0F0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -168,6 +172,15 @@
 			path = SearchMovie;
 			sourceTree = "<group>";
 		};
+		A9DEBBA42B287A4000A51E1C /* RatingView */ = {
+			isa = PBXGroup;
+			children = (
+				A9DEBBA52B287A5900A51E1C /* RatingView.swift */,
+				A9DEBBA72B287A6300A51E1C /* RatingView.xib */,
+			);
+			path = RatingView;
+			sourceTree = "<group>";
+		};
 		A9FFB5792B24578B0043D0F0 = {
 			isa = PBXGroup;
 			children = (
@@ -235,6 +248,7 @@
 		A9FFB5B92B245C220043D0F0 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				A9DEBBA42B287A4000A51E1C /* RatingView */,
 				A9FFB5C12B24678A0043D0F0 /* ApiManager */,
 				A9FFB5BA2B245C370043D0F0 /* BaseViewController */,
 				A9FFB5BB2B245C440043D0F0 /* BaseNavigationController */,
@@ -425,6 +439,7 @@
 				A9FFB5922B24578C0043D0F0 /* Assets.xcassets in Resources */,
 				A9FFB5F22B249BD50043D0F0 /* MovieListViewController.xib in Resources */,
 				A9DEBB9E2B285E2A00A51E1C /* SearchMovieViewController.xib in Resources */,
+				A9DEBBA82B287A6300A51E1C /* RatingView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -452,6 +467,7 @@
 				A95E4E792B25E25E00E15985 /* MovieDetailPresenter.swift in Sources */,
 				A9FFB5862B24578B0043D0F0 /* AppDelegate.swift in Sources */,
 				A9FFB5F82B249BFA0043D0F0 /* Extension+UIView.swift in Sources */,
+				A9DEBBA62B287A5900A51E1C /* RatingView.swift in Sources */,
 				A9FFB6052B249C330043D0F0 /* APIMethod.swift in Sources */,
 				A9FFB5EA2B24862F0043D0F0 /* MovieListCell.swift in Sources */,
 				A95E4E762B25E21100E15985 /* MovieDetailViewController.swift in Sources */,

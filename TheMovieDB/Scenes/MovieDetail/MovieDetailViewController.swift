@@ -19,6 +19,7 @@ class MovieDetailViewController: BaseViewController, MovieDetailDisplayLogic {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var releaseDateLabel: UILabel!
+    @IBOutlet weak var ratingView: RatingView!
     
     var movieId: Int
     var presenter: MovieDetailPresenterLogic?
@@ -41,6 +42,7 @@ class MovieDetailViewController: BaseViewController, MovieDetailDisplayLogic {
     private func setupView() {
         title = StringConstants.MovieDetail.title
         presenter = MovieDetailPresenter(viewController: self)
+        ratingView.layer.cornerRadius = ratingView.frame.width / 2
     }
     
     func displayMovieDetail(_ detail: DisplayMovieDetail) {
@@ -51,6 +53,7 @@ class MovieDetailViewController: BaseViewController, MovieDetailDisplayLogic {
             self?.durationLabel.text = detail.movieDuration
             self?.movieImageView.setImageFromURL(detail.backdropPath)
             self?.adultRatedIcon.isHidden = !(detail.adult ?? false)
+            self?.ratingView.setRating(detail.voteAverage ?? 0)
         }
     }
 }

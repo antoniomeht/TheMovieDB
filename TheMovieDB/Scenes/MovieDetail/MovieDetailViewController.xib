@@ -10,10 +10,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MovieDetailViewController" customModule="TheMovieDB" customModuleProvider="target">
             <connections>
-                <outlet property="adultRatedIcon" destination="A8v-Cw-FvQ" id="r09-QU-vrR"/>
+                <outlet property="adultRatedIcon" destination="4kL-Vt-L6b" id="7Mf-cQ-cr0"/>
                 <outlet property="descriptionLabel" destination="4qZ-6u-g1m" id="eNf-1n-Wxc"/>
                 <outlet property="durationLabel" destination="gcW-lK-035" id="YjG-my-bUO"/>
                 <outlet property="movieImageView" destination="8o5-Bm-B5l" id="Qb2-Oh-3MR"/>
+                <outlet property="ratingView" destination="Kjc-eu-kOc" id="8Jz-c3-Df6"/>
                 <outlet property="releaseDateLabel" destination="rde-ab-Dey" id="1Lq-Pk-dbd"/>
                 <outlet property="titleLabel" destination="WOC-Yi-4Cc" id="xnp-1c-wLe"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -57,18 +58,40 @@
                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="RRatedIcon" translatesAutoresizingMaskIntoConstraints="NO" id="A8v-Cw-FvQ">
-                    <rect key="frame" x="8" y="254" width="44.666666666666664" height="18"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="18" id="1vT-Br-crU"/>
-                        <constraint firstAttribute="width" secondItem="A8v-Cw-FvQ" secondAttribute="height" multiplier="300:121" id="PNK-0T-oQY"/>
-                    </constraints>
-                </imageView>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="4Ln-d2-CMG">
+                    <rect key="frame" x="8" y="217.33333333333334" width="44.666666666666664" height="62.666666666666657"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v9u-HL-4ij">
+                            <rect key="frame" x="0.0" y="0.0" width="44.666666666666664" height="44.666666666666664"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kjc-eu-kOc" customClass="RatingView" customModule="TheMovieDB" customModuleProvider="target">
+                                    <rect key="frame" x="4" y="4" width="36.666666666666664" height="36.666666666666664"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </view>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstItem="Kjc-eu-kOc" firstAttribute="top" secondItem="v9u-HL-4ij" secondAttribute="top" constant="4" id="GvK-jJ-7BY"/>
+                                <constraint firstAttribute="width" secondItem="v9u-HL-4ij" secondAttribute="height" multiplier="1:1" id="T1N-Hd-Is5"/>
+                                <constraint firstAttribute="trailing" secondItem="Kjc-eu-kOc" secondAttribute="trailing" constant="4" id="fg6-7r-qfB"/>
+                                <constraint firstAttribute="bottom" secondItem="Kjc-eu-kOc" secondAttribute="bottom" constant="4" id="gTO-yQ-fp7"/>
+                                <constraint firstItem="Kjc-eu-kOc" firstAttribute="leading" secondItem="v9u-HL-4ij" secondAttribute="leading" constant="4" id="iKZ-8W-3Vl"/>
+                            </constraints>
+                        </view>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="RRatedIcon" translatesAutoresizingMaskIntoConstraints="NO" id="4kL-Vt-L6b">
+                            <rect key="frame" x="0.0" y="44.666666666666657" width="44.666666666666664" height="18"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="18" id="X1T-1m-eOB"/>
+                                <constraint firstAttribute="width" secondItem="4kL-Vt-L6b" secondAttribute="height" multiplier="300:121" id="fa5-JT-29k"/>
+                            </constraints>
+                        </imageView>
+                    </subviews>
+                </stackView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" red="0.1137254902" green="0.1137254902" blue="0.1137254902" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
-                <constraint firstItem="A8v-Cw-FvQ" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="8" id="1fD-wH-2FG"/>
+                <constraint firstItem="4Ln-d2-CMG" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="8" id="2q3-ho-6SF"/>
                 <constraint firstItem="8o5-Bm-B5l" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="7ZU-a7-nBD"/>
                 <constraint firstItem="WOC-Yi-4Cc" firstAttribute="top" secondItem="8o5-Bm-B5l" secondAttribute="bottom" constant="8" id="98B-NF-rtg"/>
                 <constraint firstItem="4qZ-6u-g1m" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="12" id="AjZ-Lp-hXM"/>
@@ -76,11 +99,11 @@
                 <constraint firstItem="gcW-lK-035" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" constant="-8" id="G90-ot-gea"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="8o5-Bm-B5l" secondAttribute="trailing" id="I5m-Hw-zdu"/>
                 <constraint firstItem="gcW-lK-035" firstAttribute="bottom" secondItem="8o5-Bm-B5l" secondAttribute="bottom" constant="-8" id="Kgs-0W-s2w"/>
-                <constraint firstItem="A8v-Cw-FvQ" firstAttribute="bottom" secondItem="8o5-Bm-B5l" secondAttribute="bottom" constant="-8" id="PqH-wN-ydt"/>
                 <constraint firstItem="WOC-Yi-4Cc" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="8" id="T6Q-RS-FKX"/>
                 <constraint firstItem="rde-ab-Dey" firstAttribute="top" secondItem="4qZ-6u-g1m" secondAttribute="bottom" constant="4" id="TPg-LH-bUg"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="4qZ-6u-g1m" secondAttribute="trailing" constant="12" id="TQj-GY-uYN"/>
                 <constraint firstItem="8o5-Bm-B5l" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="cTr-3J-8Jb"/>
+                <constraint firstItem="4Ln-d2-CMG" firstAttribute="bottom" secondItem="8o5-Bm-B5l" secondAttribute="bottom" id="egW-pC-wJp"/>
                 <constraint firstItem="4qZ-6u-g1m" firstAttribute="top" secondItem="WOC-Yi-4Cc" secondAttribute="bottom" constant="4" id="npY-Pe-fy6"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="WOC-Yi-4Cc" secondAttribute="trailing" constant="8" id="zfO-3m-6E9"/>
             </constraints>

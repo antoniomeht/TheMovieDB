@@ -25,7 +25,6 @@ class MovieListViewController: BaseViewController, MovieListDisplayLogic {
         }
     }
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
@@ -38,6 +37,7 @@ class MovieListViewController: BaseViewController, MovieListDisplayLogic {
     private func setupView(){
         title = StringConstants.MovieList.title
         presenter = MovieListPresenter(viewController: self)
+        movieTypeButton.layer.cornerRadius = 10
     }
     
     private func setupTableView() {
@@ -51,6 +51,8 @@ class MovieListViewController: BaseViewController, MovieListDisplayLogic {
         searchController = UISearchController(searchResultsController: SearchMovieViewController())
         searchController?.searchResultsUpdater = self
         navigationItem.searchController = searchController
+        
+        searchController?.searchBar.searchTextField.backgroundColor = .white
     }
     
     private func setupMenuButton() {
