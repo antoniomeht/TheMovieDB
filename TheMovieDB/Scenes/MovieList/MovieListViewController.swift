@@ -18,6 +18,7 @@ class MovieListViewController: BaseViewController, MovieListDisplayLogic {
     
     var searchController: UISearchController?
     var presenter: MovieListPresenterLogic?
+    var endListFlag = false
     var displayMovies: [DisplayMovie]? {
         didSet {
             reloadTableCells()
@@ -54,6 +55,7 @@ class MovieListViewController: BaseViewController, MovieListDisplayLogic {
     
     private func setupMenuButton() {
         let menuClosure = {(action: UIAction) in
+            self.endListFlag = false
             self.updateListButton(action.title)
         }
         movieTypeButton.menu = UIMenu(children: [
@@ -68,7 +70,11 @@ class MovieListViewController: BaseViewController, MovieListDisplayLogic {
     
     private func reloadTableCells(){
         DispatchQueue.main.async { [weak self] in
-            self?.movieTableView.reloadData()
+            UIView.performWithoutAnimation {
+                self?.movieTableView.reloadData()
+                self?.movieTableView.beginUpdates()
+                self?.movieTableView.endUpdates()
+            }
         }
     }
     
@@ -78,6 +84,7 @@ class MovieListViewController: BaseViewController, MovieListDisplayLogic {
         } else {
             self.displayMovies = displayMovies
         }
+        endListFlag = displayMovies.isEmpty
     }
     
     func updateListButton(_ selection: String) {
@@ -111,7 +118,7 @@ extension MovieListViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if indexPath.item == (displayMovies?.count ?? 0) - 1{
+        if indexPath.item == (displayMovies?.count ?? 0) - 1, !endListFlag{
             presenter?.loadPage()
         }
     }

@@ -17,11 +17,13 @@ class SearchMovieViewController: BaseViewController, SearchMovieDisplayLogic {
     @IBOutlet weak var movieTableView: UITableView!
     
     var presenter: SearchMoviePresenterLogic?
+    var endListFlag = false
     var displayMovies: [DisplayMovie]? {
         didSet {
             reloadTableCells()
         }
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
@@ -40,12 +42,17 @@ class SearchMovieViewController: BaseViewController, SearchMovieDisplayLogic {
     }
     
     func searchTextDidChanged(text: String?) {
-        presenter?.searchText(text: text ?? .empty)
+        endListFlag = false
+        presenter?.searchText(text: text)
     }
     
     private func reloadTableCells(){
         DispatchQueue.main.async { [weak self] in
-            self?.movieTableView.reloadData()
+            UIView.performWithoutAnimation {
+                self?.movieTableView.reloadData()
+                self?.movieTableView.beginUpdates()
+                self?.movieTableView.endUpdates()
+            }
         }
     }
     
@@ -60,6 +67,7 @@ class SearchMovieViewController: BaseViewController, SearchMovieDisplayLogic {
         } else {
             self.displayMovies = displayMovies
         }
+        endListFlag = displayMovies.isEmpty
     }
 }
 
@@ -83,13 +91,13 @@ extension SearchMovieViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if indexPath.item == (displayMovies?.count ?? 0) - 1{
+        if indexPath.item == (displayMovies?.count ?? 0) - 1, !endListFlag {
             presenter?.loadPage()
         }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let movieId = displayMovies?[indexPath.row].id {
+        if let movieId = displayMovies?[indexPath.row].id{
             presentMovieDetail(movieId: movieId)
         }
     }

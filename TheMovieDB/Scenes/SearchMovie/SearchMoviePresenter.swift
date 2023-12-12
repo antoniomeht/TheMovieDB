@@ -8,7 +8,7 @@
 import Foundation
 
 protocol SearchMoviePresenterLogic {
-    func searchText(text: String)
+    func searchText(text: String?)
     func loadPage()
 }
 
@@ -23,8 +23,13 @@ class SearchMoviePresenter: SearchMoviePresenterLogic {
         self.viewController = viewController
     }
     
-    func searchText(text: String) {
+    func searchText(text: String?) {
+        guard let text = text, text != queryText else {
+            return
+        }
+        
         queryText = text
+        currentPage = 1
         searchText(query: queryText) { [weak self] movies in
             self?.moviesResult = movies
             self?.presentDisplayMovies()
@@ -32,6 +37,7 @@ class SearchMoviePresenter: SearchMoviePresenterLogic {
     }
     
     private func searchText(query: String, completion: @escaping ((MovieList) -> Void)) {
+        currentPage += 1
         APIManager.shared.searchMovie(with: query, page: currentPage) { result in
             switch result {
             case .success(let movies):
@@ -60,7 +66,6 @@ class SearchMoviePresenter: SearchMoviePresenterLogic {
     }
     
     func loadPage() {
-        currentPage += 1
         searchText(query: queryText) { [weak self] movies in
             self?.moviesResult = movies
             self?.presentDisplayMovies(append: true)
